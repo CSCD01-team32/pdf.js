@@ -59,6 +59,7 @@ class SecondaryToolbar {
     this.toolbar = options.toolbar;
     this.toggleButton = options.toggleButton;
     this.toolbarButtonContainer = options.toolbarButtonContainer;
+    this.secondaryToolbarContainer = options.secondaryToolbarContainer;
     this.buttons = [
       {
         element: options.presentationModeButton,
@@ -309,6 +310,11 @@ class SecondaryToolbar {
 
     this.toggleButton.classList.add("toggled");
     this.toolbar.classList.remove("hidden");
+
+    if (this.items.firstPage.disabled){
+      this.items.lastPage.focus();
+    }
+    this.items.firstPage.focus();
   }
 
   close() {

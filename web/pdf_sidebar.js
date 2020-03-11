@@ -72,7 +72,7 @@ class PDFSidebar {
     l10n = NullL10n,
     disableNotification = false,
   }) {
-    this.isOpen = false;
+    this.isOpen = false;open
     this.active = SidebarView.THUMBS;
     this.isInitialViewSet = false;
 
@@ -256,6 +256,8 @@ class PDFSidebar {
     this._dispatchEvent();
 
     this._hideUINotification(this.active);
+
+    this.thumbnailButton.focus();
   }
 
   close() {
