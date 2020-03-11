@@ -25,16 +25,16 @@
   --black: rgba(0, 0, 0, 1);
   --transparent-black: rgba(0, 0, 0, 0);
   --loading-and-side-bar-grey: rgba(51, 51, 51, 1);
-  --tenth-black: rgba(0, 0, 0, 0.1);
-  --fifteenth-black: rgba(0, 0, 0, 0.15);
+  --black-transparent-ten: rgba(0, 0, 0, 0.1);
+  --black-transparent-fifteen: rgba(0, 0, 0, 0.15);
   --html-box-shadow-quarter-black: rgba(0, 0, 0, 0.25);
   --box-shadow-fifth-white: rgba(255, 255, 255, 0.05);
   --loading-bar-background-color: rgba(221, 221, 221, 1);
   --find-toolbar-overlay-white: rgba(217, 217, 217, 1);
   --half-transparent-black: rgba(0, 0, 0, 0.5);
   --half-transparent-white: rgba(255, 255, 255, 0.5);
-  --thirthieth-transparent-black: rgba(0, 0, 0, 0.3);
-  --tenthieth-transparent-black: rgba(0, 0, 0, 0.2); 
+  --transparent-black-thirty: rgba(0, 0, 0, 0.3);
+  --transparent-black-ten: rgba(0, 0, 0, 0.2); 
 }
 
 * {
@@ -168,7 +168,7 @@ html[dir='rtl'] #outerContainer.sidebarOpen #sidebarContainer {
   -webkit-overflow-scrolling: touch;
   position: absolute;
   width: 100%;
-  background-color: var(--tenth-black);
+  background-color: var(--black-transparent-ten);
 }
 html[dir='ltr'] #sidebarContent {
   left: 0;
@@ -236,14 +236,14 @@ html[dir='rtl'] #outerContainer.sidebarOpen #viewerContainer:not(.pdfPresentatio
 html[dir='ltr'] #toolbarSidebar {
   box-shadow: inset -1px 0 0 var(--html-box-shadow-quarter-black),
               inset 0 -1px 0 var(--box-shadow-fifth-white),
-              0 1px 0 var(--fifteenth-black),
-              0 0 1px var(--tenth-black);
+              0 1px 0 var(--black-transparent-fifteen),
+              0 0 1px var(--black-transparent-ten);
 }
 html[dir='rtl'] #toolbarSidebar {
   box-shadow: inset 1px 0 0 var(--html-box-shadow-quarter-black),
               inset 0 1px 0 var(--box-shadow-fifth-white),
-              0 1px 0 var(--fifteenth-black),
-              0 0 1px var(--tenth-black);
+              0 1px 0 var(--black-transparent-fifteen),
+              0 0 1px var(--black-transparent-ten);
 }
 
 #sidebarResizer {
@@ -269,16 +269,16 @@ html[dir='rtl'] #sidebarResizer {
                     linear-gradient(rgba(82, 82, 82, 0.99), rgba(69, 69, 69, 0.95));
 }
 html[dir='ltr'] #toolbarContainer, .findbar, .secondaryToolbar {
-  box-shadow: inset 0 1px 1px var(--fifteenth-black),
+  box-shadow: inset 0 1px 1px var(--black-transparent-fifteen),
               inset 0 -1px 0 var(--box-shadow-fifth-white),
-              0 1px 0 var(--fifteenth-black),
-              0 1px 1px var(--tenth-black);
+              0 1px 0 var(--black-transparent-fifteen),
+              0 1px 1px var(--black-transparent-ten);
 }
 html[dir='rtl'] #toolbarContainer, .findbar, .secondaryToolbar {
-  box-shadow: inset 0 1px 1px var(--fifteenth-black),
+  box-shadow: inset 0 1px 1px var(--black-transparent-fifteen),
               inset 0 -1px 0 var(--box-shadow-fifth-white),
-              0 1px 0 var(--fifteenth-black),
-              0 1px 1px var(--tenth-black);
+              0 1px 0 var(--black-transparent-fifteen),
+              0 1px 1px var(--black-transparent-ten);
 }
 
 #toolbarViewer {
@@ -412,7 +412,7 @@ html[dir='rtl'] .secondaryToolbar {
 .doorHangerRight {
   border: 1px solid var(--half-transparent-black);
   border-radius: 2px;
-  box-shadow: 0 1px 4px var(--thirthieth-transparent-black);
+  box-shadow: 0 1px 4px var(--transparent-black-thirty);
 }
 .doorHanger:after, .doorHanger:before,
 .doorHangerRight:after, .doorHangerRight:before {
@@ -679,11 +679,11 @@ html[dir='rtl'] .dropdownToolbarButton {
 .overlayButton:hover:active,
 .dropdownToolbarButton:hover:active,
 .secondaryToolbarButton:hover:active {
-  background-color: var(--tenthieth-transparent-black);
+  background-color: var(--transparent-black-ten);
   background-image: linear-gradient(var(--box-shadow-fifth-white), rgba(255, 255, 255, 0));
   border-color: rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.45);
-  box-shadow: 0 1px 1px var(--tenth-black) inset,
-              0 0 1px var(--tenthieth-transparent-black) inset,
+  box-shadow: 0 1px 1px var(--black-transparent-ten) inset,
+              0 0 1px var(--transparent-black-ten) inset,
               0 1px 0 var(--box-shadow-fifth-white);
   transition-property: background-color, border-color, box-shadow;
   transition-duration: 10ms;
@@ -693,11 +693,11 @@ html[dir='rtl'] .dropdownToolbarButton {
 .toolbarButton.toggled,
 .splitToolbarButton.toggled > .toolbarButton.toggled,
 .secondaryToolbarButton.toggled {
-  background-color: var(--thirthieth-transparent-black);
+  background-color: var(--transparent-black-thirty);
   background-image: linear-gradient(var(--box-shadow-fifth-white), rgba(255, 255, 255, 0));
   border-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.45) var(--half-transparent-black);
-  box-shadow: 0 1px 1px var(--tenth-black) inset,
-              0 0 1px var(--tenthieth-transparent-black) inset,
+  box-shadow: 0 1px 1px var(--black-transparent-ten) inset,
+              0 0 1px var(--transparent-black-ten) inset,
               0 1px 0 var(--box-shadow-fifth-white);
   transition-property: background-color, border-color, box-shadow;
   transition-duration: 10ms;
@@ -709,8 +709,8 @@ html[dir='rtl'] .dropdownToolbarButton {
 .secondaryToolbarButton.toggled:hover:active {
   background-color: rgba(0, 0, 0, 0.4);
   border-color: rgba(0, 0, 0, 0.4) var(--half-transparent-black) rgba(0, 0, 0, 0.55);
-  box-shadow: 0 1px 1px var(--tenthieth-transparent-black) inset,
-              0 0 1px var(--thirthieth-transparent-black) inset,
+  box-shadow: 0 1px 1px var(--transparent-black-ten) inset,
+              0 0 1px var(--transparent-black-thirty) inset,
               0 1px 0 var(--box-shadow-fifth-white);
 }
 
@@ -1150,7 +1150,7 @@ html[dir='rtl'] .thumbnail {
 
 .thumbnailImage {
   border: 1px solid var(--transparent-black);
-  box-shadow: 0 0 0 1px var(--half-transparent-black), 0 2px 8px var(--thirthieth-transparent-black);
+  box-shadow: 0 0 0 1px var(--half-transparent-black), 0 2px 8px var(--transparent-black-thirty);
   opacity: 0.8;
   z-index: 99;
   background-color: rgba(255, 255, 255, 1);
@@ -1174,7 +1174,7 @@ a:focus > .thumbnail > .thumbnailSelectionRing,
   background-clip: padding-box;
   box-shadow: 0 1px 0 var(--box-shadow-fifth-white) inset,
               0 0 1px rgba(255, 255, 255, 0.2) inset,
-              0 0 1px var(--tenthieth-transparent-black);
+              0 0 1px var(--transparent-black-ten);
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -1189,7 +1189,7 @@ a:focus > .thumbnail > .thumbnailSelectionRing,
   background-clip: padding-box;
   box-shadow: 0 1px 0 var(--box-shadow-fifth-white) inset,
               0 0 1px rgba(255, 255, 255, 0.1) inset,
-              0 0 1px var(--tenthieth-transparent-black);
+              0 0 1px var(--transparent-black-ten);
   color: rgba(255, 255, 255,1);
 }
 
@@ -1304,7 +1304,7 @@ html[dir='rtl'] .outlineItemToggler::before {
   background-clip: padding-box;
   box-shadow: 0 1px 0 var(--box-shadow-fifth-white) inset,
               0 0 1px rgba(255, 255, 255, 0.2) inset,
-              0 0 1px var(--tenthieth-transparent-black);
+              0 0 1px var(--transparent-black-ten);
   border-radius: 2px;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -1315,7 +1315,7 @@ html[dir='rtl'] .outlineItemToggler::before {
   background-clip: padding-box;
   box-shadow: 0 1px 0 var(--box-shadow-fifth-white) inset,
               0 0 1px rgba(255, 255, 255, 0.1) inset,
-              0 0 1px var(--tenthieth-transparent-black);
+              0 0 1px var(--transparent-black-ten);
   color: rgba(255, 255, 255, 1);
 }
 
@@ -1374,7 +1374,7 @@ html[dir='rtl'] .outlineItemToggler::before {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: var(--tenthieth-transparent-black);
+  background-color: var(--transparent-black-ten);
   z-index: 40000;
 }
 #overlayContainer > * {
@@ -1400,7 +1400,7 @@ html[dir='rtl'] .outlineItemToggler::before {
                     linear-gradient(rgba(82, 82, 82,0.99), rgba(69, 69, 69, 0.95));
   border: 1px solid var(--half-transparent-black);
   border-radius: 4px;
-  box-shadow: 0 1px 4px var(--thirthieth-transparent-black);
+  box-shadow: 0 1px 4px var(--transparent-black-thirty);
 }
 
 .dialog > .row {
