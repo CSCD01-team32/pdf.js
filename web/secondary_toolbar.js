@@ -59,7 +59,6 @@ class SecondaryToolbar {
     this.toolbar = options.toolbar;
     this.toggleButton = options.toggleButton;
     this.toolbarButtonContainer = options.toolbarButtonContainer;
-    this.secondaryToolbarContainer = options.secondaryToolbarContainer;
     this.buttons = [
       {
         element: options.presentationModeButton,

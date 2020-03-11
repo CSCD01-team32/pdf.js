@@ -72,7 +72,7 @@ class PDFSidebar {
     l10n = NullL10n,
     disableNotification = false,
   }) {
-    this.isOpen = false;open
+    this.isOpen = false;
     this.active = SidebarView.THUMBS;
     this.isInitialViewSet = false;
 
