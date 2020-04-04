@@ -101,7 +101,16 @@ class PDFSidebar {
     this.l10n = l10n;
     this._disableNotification = disableNotification;
 
+    this.focusOrder = [
+      this.thumbnailButton,
+      this.outlineButton,
+      this.attachmentsButton,
+    ];
+
     this._addEventListeners();
+
+    // Bind the event listeners for keyboard navigation
+    this._bindKeyListeners();
   }
 
   reset() {
@@ -480,6 +489,35 @@ class PDFSidebar {
         this._updateThumbnailViewer();
       }
     });
+  }
+
+  /**
+   * @private
+   */
+  _bindKeyListeners() {
+    for(var item of this.focusOrder) {
+      toolbar = this;
+      // Handle arrow key navigation
+      item.addEventListener("keydown", function(evt) {
+        const key = evt.key;
+
+        switch (key) {
+          case "ArrowLeft":
+            evt.preventDefault();
+            evt.stopPropagation();
+            setFocusPrevious(this, toolbar);
+            break;
+          case "ArrowRight":
+            evt.preventDefault();
+            evt.stopPropagation();
+            setFocusNext(this, toolbar);
+            break;
+          case "Escape":
+            this.blur();
+            break;
+        }
+      });
+    }
   }
 }
 
