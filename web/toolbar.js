@@ -189,7 +189,7 @@ class Toolbar {
 
   _bindKeyListeners() {
     for(var item of this.focusOrder) {
-      toolbar = this;
+      var toolbar = this;
       // Handle arrow key navigation
       item.addEventListener("keydown", function(evt) {
         const key = evt.key;

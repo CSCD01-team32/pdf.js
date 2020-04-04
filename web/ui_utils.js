@@ -1018,8 +1018,7 @@ function setFocusPrevious(item, toolbar) {
 function setFocusNext(item, toolbar) {
   var index = toolbar.focusOrder.indexOf(item);
   var nextItem;
-  console.log(toolbar.focusOrder);
-  console.log(index);
+
   if (index === (toolbar.focusOrder.length - 1)) {
     nextItem = toolbar.focusOrder[0];
   } else {

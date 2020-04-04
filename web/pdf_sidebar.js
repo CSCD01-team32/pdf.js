@@ -496,7 +496,7 @@ class PDFSidebar {
    */
   _bindKeyListeners() {
     for(var item of this.focusOrder) {
-      toolbar = this;
+      var sidebar = this;
       // Handle arrow key navigation
       item.addEventListener("keydown", function(evt) {
         const key = evt.key;
@@ -505,12 +505,12 @@ class PDFSidebar {
           case "ArrowLeft":
             evt.preventDefault();
             evt.stopPropagation();
-            setFocusPrevious(this, toolbar);
+            setFocusPrevious(this, sidebar);
             break;
           case "ArrowRight":
             evt.preventDefault();
             evt.stopPropagation();
-            setFocusNext(this, toolbar);
+            setFocusNext(this, sidebar);
             break;
           case "Escape":
             this.blur();
