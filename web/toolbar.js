@@ -87,12 +87,31 @@ class Toolbar {
       zoomIn: options.zoomIn,
       zoomOut: options.zoomOut,
     };
+    this.focusOrder = [
+      options.sidebarToggle,
+      options.viewFind,
+      options.previous,
+      options.next,
+      options.pageNumber,
+      options.zoomOut,
+      options.zoomIn,
+      options.scaleSelect,
+      options.presentationModeButton,
+      options.openFile,
+      options.print,
+      options.download,
+      options.viewBookmark,
+      options.secondaryToolbarToggle,
+    ];
 
     this._wasLocalized = false;
     this.reset();
 
     // Bind the event listeners for click and various other actions.
     this._bindListeners();
+
+    // Bind the event listeners for keyboard navigation
+    this._bindKeyListeners();
   }
 
   setPageNumber(pageNumber, pageLabel) {
@@ -122,6 +141,33 @@ class Toolbar {
     this.pageScale = DEFAULT_SCALE;
     this._updateUIState(true);
     this.updateLoadingIndicatorState();
+  }
+
+  setFocusPrevious(item, toolbar) {
+    var index = toolbar.focusOrder.indexOf(item);
+    var nextItem;
+
+    if (index === 0) {
+      nextItem = toolbar.focusOrder[toolbar.focusOrder.length - 1];
+    } else {
+      nextItem = toolbar.focusOrder[index - 1];
+    }
+
+    nextItem.focus();
+  }
+
+  setFocusNext(item, toolbar) {
+    var index = toolbar.focusOrder.indexOf(item);
+    var nextItem;
+    console.log(toolbar.focusOrder);
+    console.log(index);
+    if (index === (toolbar.focusOrder.length - 1)) {
+      nextItem = toolbar.focusOrder[0];
+    } else {
+      nextItem = toolbar.focusOrder[index + 1];
+    }
+
+    nextItem.focus();
   }
 
   _bindListeners() {
@@ -164,6 +210,32 @@ class Toolbar {
       this._adjustScaleWidth();
       this._updateUIState(true);
     });
+  }
+
+  _bindKeyListeners() {
+    for(var item of this.focusOrder) {
+      toolbar = this;
+      // Handle arrow key navigation
+      item.addEventListener("keydown", function(evt) {
+        const key = evt.key;
+
+        switch (key) {
+          case "ArrowLeft":
+            evt.preventDefault();
+            evt.stopPropagation();
+            toolbar.setFocusPrevious(this, toolbar);
+            break;
+          case "ArrowRight":
+            evt.preventDefault();
+            evt.stopPropagation();
+            toolbar.setFocusNext(this, toolbar);
+            break;
+          case "Escape":
+            this.blur();
+            break;
+        }
+      });
+    }
   }
 
   _updateUIState(resetNumPages = false) {
