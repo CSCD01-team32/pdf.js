@@ -13,7 +13,13 @@
  * limitations under the License.
  */
 
-import { SCROLLBAR_PADDING, ScrollMode, SpreadMode } from "./ui_utils.js";
+import {
+  SCROLLBAR_PADDING,
+  ScrollMode,
+  SpreadMode,
+  setFocusPrevious,
+  setFocusNext,
+} from "./ui_utils.js";
 import { CursorTool } from "./pdf_cursor_tools.js";
 import { PDFSinglePageViewer } from "./pdf_single_page_viewer.js";
 
@@ -142,6 +148,30 @@ class SecondaryToolbar {
       pageRotateCcw: options.pageRotateCcwButton,
     };
 
+    this.originalFocusOrder = [
+      options.presentationModeButton,
+      options.openFileButton,
+      options.printButton,
+      options.downloadButton,
+      options.viewBookmarkButton,
+      options.firstPageButton,
+      options.lastPageButton,
+      options.pageRotateCwButton,
+      options.pageRotateCcwButton,
+      options.cursorSelectToolButton,
+      options.cursorHandToolButton,
+      options.scrollVerticalButton,
+      options.scrollHorizontalButton,
+      options.scrollWrappedButton,
+      options.spreadNoneButton,
+      options.spreadOddButton,
+      options.spreadEvenButton,
+      options.documentPropertiesButton,
+    ];
+
+    // Make a copy of focus order, since buttons can be removed.
+    this.focusOrder = this.originalFocusOrder.slice();
+
     this.mainContainer = mainContainer;
     this.eventBus = eventBus;
 
@@ -151,9 +181,10 @@ class SecondaryToolbar {
 
     this.reset();
 
-    // Bind the event listeners for click, cursor tool, and scroll/spread mode
-    // actions.
+    // Bind the event listeners for click, keyboard navigation, cursor tool,
+    // and scroll/spread mode actions.
     this._bindClickListeners();
+    this._bindKeyListeners();
     this._bindCursorToolsListener(options);
     this._bindScrollModeListener(options);
     this._bindSpreadModeListener(options);
@@ -227,6 +258,35 @@ class SecondaryToolbar {
         }
         if (close) {
           this.close();
+        }
+      });
+    }
+  }
+
+  _bindKeyListeners() {
+    for(var item of this.focusOrder) {
+      var secondaryToolbar = this;
+      // Handle arrow key navigation
+      item.addEventListener("keydown", function(evt) {
+        const key = evt.key;
+
+        switch (key) {
+          case "ArrowUp":
+            evt.preventDefault();
+            evt.stopPropagation();
+            secondaryToolbar.refreshFocusOrder();
+            setFocusPrevious(this, secondaryToolbar);
+            break;
+          case "ArrowDown":
+            evt.preventDefault();
+            evt.stopPropagation();
+            secondaryToolbar.refreshFocusOrder();
+            setFocusNext(this, secondaryToolbar);
+            break;
+          case "Escape":
+            this.blur();
+            toolbar.close();
+            break;
         }
       });
     }
@@ -310,10 +370,18 @@ class SecondaryToolbar {
     this.toggleButton.classList.add("toggled");
     this.toolbar.classList.remove("hidden");
 
-    if (this.items.firstPage.disabled){
-      this.items.lastPage.focus();
+    // Move focus to the first element in the toolbar
+    this.refreshFocusOrder();
+
+    var item = this.focusOrder[0];
+    var index = 0;
+
+    while(item.disabled) {
+      index++;
+      item = this.focusOrder[index];
     }
-    this.items.firstPage.focus();
+
+    item.focus();
   }
 
   close() {
@@ -331,6 +399,29 @@ class SecondaryToolbar {
     } else {
       this.open();
     }
+  }
+
+  /**
+   * Refreshes the toolbar focus order since window resize changes it.
+   */
+  refreshFocusOrder() {
+    var w = screen.width;
+    var length = this.originalFocusOrder.length;
+
+    if (w <= 640) {
+      this.focusOrder = this.originalFocusOrder.slice();
+    } else if (w <= 700) {
+      var a0 = this.originalFocusOrder.slice(0, 4);
+      var a1 = this.originalFocusOrder.slice(5, length);
+      this.focusOrder = a0.concat(a1);
+    } else if (w <= 770) {
+      var a0 = this.originalFocusOrder.slice(0, 2);
+      var a1 = this.originalFocusOrder.slice(5, length);
+      this.focusOrder = a0.concat(a1);
+    } else {
+      this.focusOrder = this.originalFocusOrder.slice(5, length);
+    }
+
   }
 
   /**
