@@ -21,6 +21,8 @@ import {
   MIN_SCALE,
   noContextMenuHandler,
   NullL10n,
+  setFocusPrevious,
+  setFocusNext,
 } from "./ui_utils.js";
 
 const PAGE_NUMBER_LOADING_INDICATOR = "visiblePageIsLoading";
@@ -143,49 +145,6 @@ class Toolbar {
     this.updateLoadingIndicatorState();
   }
 
-  /**
-  * Changes the focus to the previous focusable item in the toolbar
-  */
-  setFocusPrevious(item, toolbar) {
-    var index = toolbar.focusOrder.indexOf(item);
-    var nextItem;
-
-    if (index === 0) {
-      nextItem = toolbar.focusOrder[toolbar.focusOrder.length - 1];
-    } else {
-      nextItem = toolbar.focusOrder[index - 1];
-    }
-
-    // If nextItem is disabled then skip it
-    if (nextItem.disabled) {
-      toolbar.setFocusPrevious(nextItem, toolbar);
-    } else {
-      nextItem.focus();
-    }
-  }
-
-  /**
-  * Changes the focus to the next focusable item in the toolbar
-  */
-  setFocusNext(item, toolbar) {
-    var index = toolbar.focusOrder.indexOf(item);
-    var nextItem;
-    console.log(toolbar.focusOrder);
-    console.log(index);
-    if (index === (toolbar.focusOrder.length - 1)) {
-      nextItem = toolbar.focusOrder[0];
-    } else {
-      nextItem = toolbar.focusOrder[index + 1];
-    }
-
-    // If nextItem is disabled then skip it
-    if (nextItem.disabled) {
-      toolbar.setFocusNext(nextItem, toolbar);
-    } else {
-      nextItem.focus();
-    }
-  }
-
   _bindListeners() {
     const { pageNumber, scaleSelect } = this.items;
     const self = this;
@@ -239,12 +198,12 @@ class Toolbar {
           case "ArrowLeft":
             evt.preventDefault();
             evt.stopPropagation();
-            toolbar.setFocusPrevious(this, toolbar);
+            setFocusPrevious(this, toolbar);
             break;
           case "ArrowRight":
             evt.preventDefault();
             evt.stopPropagation();
-            toolbar.setFocusNext(this, toolbar);
+            setFocusNext(this, toolbar);
             break;
           case "Escape":
             this.blur();
