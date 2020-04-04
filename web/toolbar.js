@@ -143,6 +143,9 @@ class Toolbar {
     this.updateLoadingIndicatorState();
   }
 
+  /**
+  * Changes the focus to the previous focusable item in the toolbar
+  */
   setFocusPrevious(item, toolbar) {
     var index = toolbar.focusOrder.indexOf(item);
     var nextItem;
@@ -153,9 +156,17 @@ class Toolbar {
       nextItem = toolbar.focusOrder[index - 1];
     }
 
-    nextItem.focus();
+    // If nextItem is disabled then skip it
+    if (nextItem.disabled) {
+      toolbar.setFocusPrevious(nextItem, toolbar);
+    } else {
+      nextItem.focus();
+    }
   }
 
+  /**
+  * Changes the focus to the next focusable item in the toolbar
+  */
   setFocusNext(item, toolbar) {
     var index = toolbar.focusOrder.indexOf(item);
     var nextItem;
@@ -167,7 +178,12 @@ class Toolbar {
       nextItem = toolbar.focusOrder[index + 1];
     }
 
-    nextItem.focus();
+    // If nextItem is disabled then skip it
+    if (nextItem.disabled) {
+      toolbar.setFocusNext(nextItem, toolbar);
+    } else {
+      nextItem.focus();
+    }
   }
 
   _bindListeners() {
