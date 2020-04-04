@@ -13,7 +13,13 @@
  * limitations under the License.
  */
 
-import { getGlobalEventBus, NullL10n } from "./ui_utils.js";
+import {
+  getGlobalEventBus,
+  NullL10n,
+  setFocusPrevious,
+  setFocusNext
+} from "./ui_utils.js";
+
 import { FindState } from "./pdf_find_controller.js";
 
 const MATCHES_COUNT_LIMIT = 1000;
@@ -40,6 +46,15 @@ class PDFFindBar {
     this.findNextButton = options.findNextButton || null;
     this.eventBus = eventBus || getGlobalEventBus();
     this.l10n = l10n;
+
+    this.focusOrder = [
+      options.findField,
+      options.findPreviousButton,
+      options.findNextButton,
+      options.highlightAllCheckbox,
+      options.caseSensitiveCheckbox,
+      options.entireWordCheckbox,
+    ];
 
     // Add event listeners to the DOM elements.
     this.toggleButton.addEventListener("click", () => {
@@ -84,6 +99,8 @@ class PDFFindBar {
     });
 
     this.eventBus._on("resize", this._adjustWidth.bind(this));
+
+    this._bindKeyListeners();
   }
 
   reset() {
@@ -263,6 +280,35 @@ class PDFFindBar {
       // the browser wrapped some of the elements. For a consistent look,
       // wrap all of them to adjust the width of the find bar.
       this.bar.classList.add("wrapContainers");
+    }
+  }
+
+  /**
+   * @private
+   */
+  _bindKeyListeners() {
+    for(var item of this.focusOrder) {
+      var findBar = this;
+      // Handle arrow key navigation
+      item.addEventListener("keydown", function(evt) {
+        const key = evt.key;
+
+        switch (key) {
+          case "ArrowLeft":
+            evt.preventDefault();
+            evt.stopPropagation();
+            setFocusPrevious(this, findBar);
+            break;
+          case "ArrowRight":
+            evt.preventDefault();
+            evt.stopPropagation();
+            setFocusNext(this, findBar);
+            break;
+          case "Escape":
+            this.blur();
+            break;
+        }
+      });
     }
   }
 }
