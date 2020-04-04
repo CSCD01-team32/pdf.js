@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { NullL10n } from "./ui_utils.js";
+import { NullL10n, setFocusPrevious, setFocusNext } from "./ui_utils.js";
 import { RenderingStates } from "./pdf_rendering_queue.js";
 
 const UI_NOTIFICATION_CLASS = "pdfSidebarNotification";
