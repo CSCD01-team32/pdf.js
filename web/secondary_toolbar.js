@@ -287,6 +287,9 @@ class SecondaryToolbar {
             this.blur();
             toolbar.close();
             break;
+          case "Tab":
+            evt.preventDefault();
+            break;
         }
       });
     }
