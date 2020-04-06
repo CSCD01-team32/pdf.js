@@ -66,6 +66,7 @@ class PDFDocumentProperties {
     l10n = NullL10n
   ) {
     this.overlayName = overlayName;
+    this.closeButton = closeButton;
     this.fields = fields;
     this.container = container;
     this.overlayManager = overlayManager;
@@ -114,6 +115,8 @@ class PDFDocumentProperties {
     Promise.all([
       this.overlayManager.open(this.overlayName),
       this._dataAvailableCapability.promise,
+      this.closeButton.focus(),
+      //document.getElementById("documentPropertiesClose").focus(),
     ]).then(() => {
       const currentPageNumber = this._currentPageNumber;
       const pagesRotation = this._pagesRotation;
