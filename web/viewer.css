@@ -206,6 +206,10 @@ html[dir='rtl'] #outerContainer.sidebarOpen #viewerContainer:not(.pdfPresentatio
   cursor: default;
 }
 
+.toolbar:focus {
+  outline: 1px solid rgba(77, 184, 255, 0.8);
+}
+
 #toolbarContainer {
   width: 100%;
 }
@@ -645,10 +649,22 @@ html[dir='rtl'] .dropdownToolbarButton {
 
 .toolbarButton:hover,
 .toolbarButton:focus,
-.dropdownToolbarButton,
+/* .dropdownToolbarButton, */
 .overlayButton,
 .secondaryToolbarButton:hover,
 .secondaryToolbarButton:focus {
+  background-color: rgba(0, 0, 0, 0.12);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+  background-clip: padding-box;
+  /* border: 1px solid rgba(0, 0, 0, 0.35); */
+  /* border-color: rgba(0, 0, 0, 0.32) rgba(0, 0, 0, 0.38) rgba(0, 0, 0, 0.42);*/
+  border-color: rgba(77, 184, 255, 0.8);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset,
+              0 0 1px rgba(255, 255, 255, 0.15) inset,
+              0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.dropdownToolbarButton{
   background-color: rgba(0, 0, 0, 0.12);
   background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
   background-clip: padding-box;
@@ -659,13 +675,27 @@ html[dir='rtl'] .dropdownToolbarButton {
               0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
+.dropdownToolbarButton:focus {
+  outline: 1px solid rgba(77, 184, 255, 0.8);
+}
+
+/* Outline toolbar elements on hover */
+.dropdownToolbarButton:hover,
+.pageUp:hover,
+.pageDown:hover,
+.zoomOut:hover,
+.zoomIn:hover,
+.pageNumber:hover {
+  outline: 1px solid rgba(77, 184, 255, 0.8);
+}
+
 .toolbarButton:hover:active,
 .overlayButton:hover:active,
 .dropdownToolbarButton:hover:active,
 .secondaryToolbarButton:hover:active {
   background-color: rgba(0, 0, 0, 0.2);
   background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-  border-color: rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.45);
+  border-color: rgba(253, 74, 74, 0.35) rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.45);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset,
               0 0 1px rgba(0, 0, 0, 0.2) inset,
               0 1px 0 rgba(255, 255, 255, 0.05);
@@ -1049,6 +1079,10 @@ html[dir='rtl'] .verticalToolbarSeparator {
 .toolbarField[type=checkbox] {
   display: inline-block;
   margin: 8px 0px;
+}
+
+.toolbarField[type=checkbox]:focus {
+  outline: 1px solid rgba(77, 184, 255, 0.8);
 }
 
 .toolbarField.pageNumber {

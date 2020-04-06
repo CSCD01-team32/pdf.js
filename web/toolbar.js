@@ -97,7 +97,7 @@ class Toolbar {
       options.pageNumber,
       options.zoomOut,
       options.zoomIn,
-      options.scaleSelect,
+      options.scaleSelectContainer,
       options.presentationModeButton,
       options.openFile,
       options.print,
