@@ -124,7 +124,7 @@ See https://github.com/adobe-type-tools/cmap-resources
         <div id="secondaryToolbar" class="secondaryToolbar hidden doorHangerRight">
           <div id="secondaryToolbarButtonContainer">
             <button id="secondaryPresentationMode" class="secondaryToolbarButton presentationMode visibleLargeView" title="Switch to Presentation Mode" tabindex="-1" data-l10n-id="presentation_mode">
-              <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
+              <span data-l10n-id="presentation_mode_label">Presentation Mode (Ctrl + Alt + F)</span>
             </button>
 
             <button id="secondaryOpenFile" class="secondaryToolbarButton openFile visibleLargeView" title="Open File" tabindex="-1" data-l10n-id="open_file">
@@ -132,11 +132,11 @@ See https://github.com/adobe-type-tools/cmap-resources
             </button>
 
             <button id="secondaryPrint" class="secondaryToolbarButton print visibleMediumView" title="Print" tabindex="-1" data-l10n-id="print">
-              <span data-l10n-id="print_label">Print</span>
+              <span data-l10n-id="print_label">Print (Ctrl + P)</span>
             </button>
 
             <button id="secondaryDownload" class="secondaryToolbarButton download visibleMediumView" title="Download" tabindex="-1" data-l10n-id="download">
-              <span data-l10n-id="download_label">Download</span>
+              <span data-l10n-id="download_label">Download (Ctrl + S)</span>
             </button>
 
             <a href="#" id="secondaryViewBookmark" class="secondaryToolbarButton bookmark visibleSmallView" title="Current view (copy or open in new window)" tabindex="-1" data-l10n-id="bookmark">
@@ -155,19 +155,19 @@ See https://github.com/adobe-type-tools/cmap-resources
             <div class="horizontalToolbarSeparator"></div>
 
             <button id="pageRotateCw" class="secondaryToolbarButton rotateCw" title="Rotate Clockwise" tabindex="-1" data-l10n-id="page_rotate_cw">
-              <span data-l10n-id="page_rotate_cw_label">Rotate Clockwise</span>
+              <span data-l10n-id="page_rotate_cw_label">Rotate Clockwise (R)</span>
             </button>
             <button id="pageRotateCcw" class="secondaryToolbarButton rotateCcw" title="Rotate Counterclockwise" tabindex="-1" data-l10n-id="page_rotate_ccw">
-              <span data-l10n-id="page_rotate_ccw_label">Rotate Counterclockwise</span>
+              <span data-l10n-id="page_rotate_ccw_label">Rotate Counterclockwise (Shift + R)</span>
             </button>
 
             <div class="horizontalToolbarSeparator"></div>
 
             <button id="cursorSelectTool" class="secondaryToolbarButton selectTool toggled" title="Enable Text Selection Tool" tabindex="-1" data-l10n-id="cursor_text_select_tool">
-              <span data-l10n-id="cursor_text_select_tool_label">Text Selection Tool</span>
+              <span data-l10n-id="cursor_text_select_tool_label">Text Selection Tool (S)</span>
             </button>
             <button id="cursorHandTool" class="secondaryToolbarButton handTool" title="Enable Hand Tool" tabindex="-1" data-l10n-id="cursor_hand_tool">
-              <span data-l10n-id="cursor_hand_tool_label">Hand Tool</span>
+              <span data-l10n-id="cursor_hand_tool_label">Hand Tool (H)</span>
             </button>
 
             <div class="horizontalToolbarSeparator"></div>
@@ -206,11 +206,11 @@ See https://github.com/adobe-type-tools/cmap-resources
           <div id="toolbarContainer">
             <div id="toolbarViewer">
               <div id="toolbarViewerLeft">
-                <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="0" data-l10n-id="toggle_sidebar">
+                <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar (F4)" tabindex="0" data-l10n-id="toggle_sidebar">
                   <span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
                 </button>
                 <div class="toolbarButtonSpacer"></div>
-                <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="-1" data-l10n-id="findbar">
+                <button id="viewFind" class="toolbarButton" title="Find in Document (Ctrl + F)" tabindex="-1" data-l10n-id="findbar">
                   <span data-l10n-id="findbar_label">Find</span>
                 </button>
                 <div class="splitToolbarButton hiddenSmallView">
@@ -227,11 +227,11 @@ See https://github.com/adobe-type-tools/cmap-resources
               </div>
               <div id="toolbarViewerMiddle">
                 <div class="splitToolbarButton">
-                  <button id="zoomOut" class="toolbarButton zoomOut" title="Zoom Out" tabindex="-1" data-l10n-id="zoom_out">
+                  <button id="zoomOut" class="toolbarButton zoomOut" title="Zoom Out (Ctrl + '-')" tabindex="-1" data-l10n-id="zoom_out">
                     <span data-l10n-id="zoom_out_label">Zoom Out</span>
                   </button>
                   <div class="splitToolbarButtonSeparator"></div>
-                  <button id="zoomIn" class="toolbarButton zoomIn" title="Zoom In" tabindex="-1" data-l10n-id="zoom_in">
+                  <button id="zoomIn" class="toolbarButton zoomIn" title="Zoom In (Ctrl + '+')" tabindex="-1" data-l10n-id="zoom_in">
                     <span data-l10n-id="zoom_in_label">Zoom In</span>
                    </button>
                 </div>
@@ -254,7 +254,7 @@ See https://github.com/adobe-type-tools/cmap-resources
                 </span>
               </div>
               <div id="toolbarViewerRight">
-                <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="-1" data-l10n-id="presentation_mode">
+                <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode (Ctrl + Alt + P)" tabindex="-1" data-l10n-id="presentation_mode">
                   <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
                 </button>
 
@@ -262,11 +262,11 @@ See https://github.com/adobe-type-tools/cmap-resources
                   <span data-l10n-id="open_file_label">Open</span>
                 </button>
 
-                <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="-1" data-l10n-id="print">
+                <button id="print" class="toolbarButton print hiddenMediumView" title="Print (Ctrl + P)" tabindex="-1" data-l10n-id="print">
                   <span data-l10n-id="print_label">Print</span>
                 </button>
 
-                <button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="-1" data-l10n-id="download">
+                <button id="download" class="toolbarButton download hiddenMediumView" title="Download (Ctrl + S)" tabindex="-1" data-l10n-id="download">
                   <span data-l10n-id="download_label">Download</span>
                 </button>
                 <a href="#" id="viewBookmark" class="toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="-1" data-l10n-id="bookmark">
@@ -275,7 +275,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 
                 <div class="verticalToolbarSeparator hiddenSmallView"></div>
 
-                <button id="secondaryToolbarToggle" class="toolbarButton" title="Tools" tabindex="-1" data-l10n-id="tools">
+                <button id="secondaryToolbarToggle" class="toolbarButton" title="Tools (F7)" tabindex="-1" data-l10n-id="tools">
                   <span data-l10n-id="tools_label">Tools</span>
                 </button>
               </div>
