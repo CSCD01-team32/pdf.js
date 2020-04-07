@@ -656,15 +656,13 @@ html[dir='rtl'] .dropdownToolbarButton {
 
 .toolbarButton:hover,
 .toolbarButton:focus,
-/* .dropdownToolbarButton, */
-.overlayButton,
+.overlayButton:hover,
+.overlayButton:focus,
 .secondaryToolbarButton:hover,
 .secondaryToolbarButton:focus {
   background-color: rgba(0, 0, 0, 0.12);
   background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
   background-clip: padding-box;
-  /* border: 1px solid rgba(0, 0, 0, 0.35); */
-  /* border-color: rgba(0, 0, 0, 0.32) rgba(0, 0, 0, 0.38) rgba(0, 0, 0, 0.42);*/
   border-color: rgba(77, 184, 255, 0.8);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset,
               0 0 1px rgba(255, 255, 255, 0.15) inset,
