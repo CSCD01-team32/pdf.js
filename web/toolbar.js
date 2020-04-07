@@ -97,7 +97,7 @@ class Toolbar {
       options.pageNumber,
       options.zoomOut,
       options.zoomIn,
-      options.scaleSelectContainer,
+      options.scaleSelect,
       options.presentationModeButton,
       options.openFile,
       options.print,
@@ -187,6 +187,17 @@ class Toolbar {
     });
     // Suppress context menus for some controls.
     scaleSelect.oncontextmenu = noContextMenuHandler;
+
+    // Highlight the container for scaleSelect when in focus
+    scaleSelect.addEventListener("focusin", function() {
+        const { scaleSelectContainer } = self.items;
+        scaleSelectContainer.classList.add("outline-highlight-thin");
+    });
+    scaleSelect.addEventListener("focusout", function() {
+        const { scaleSelectContainer } = self.items;
+        scaleSelectContainer.classList.remove("outline-highlight-thin");
+    });
+
 
     this.eventBus._on("localized", () => {
       this._wasLocalized = true;

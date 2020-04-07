@@ -682,10 +682,6 @@ html[dir='rtl'] .dropdownToolbarButton {
               0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-.dropdownToolbarButton:focus {
-  outline: 1px solid rgba(77, 184, 255, 0.8);
-}
-
 /* Outline toolbar elements on hover */
 .dropdownToolbarButton:hover,
 .pageUp:hover,
