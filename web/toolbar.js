@@ -114,6 +114,14 @@ class Toolbar {
 
     // Bind the event listeners for keyboard navigation
     this._bindKeyListeners();
+
+    // Highlight the toolbar when focused
+    this.toolbar.addEventListener("focusin", () => {
+      this.toolbar.classList.add("outline-highlight");
+    });
+    this.toolbar.addEventListener("focusout", () => {
+      this.toolbar.classList.remove("outline-highlight");
+    });
   }
 
   setPageNumber(pageNumber, pageLabel) {

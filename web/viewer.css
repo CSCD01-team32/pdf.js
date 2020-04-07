@@ -204,9 +204,13 @@ html[dir='rtl'] #outerContainer.sidebarOpen #viewerContainer:not(.pdfPresentatio
   right: 0;
   z-index: 9999;
   cursor: default;
+  border: 1px solid rgba(64, 64, 64, 1);
 }
 
-.toolbar:focus {
+.border-highlight {
+  border-color: rgba(77, 184, 255, 0.8);
+}
+.outline-highlight {
   outline: 1px solid rgba(77, 184, 255, 0.8);
 }
 
@@ -704,7 +708,7 @@ html[dir='rtl'] .dropdownToolbarButton {
   transition-timing-function: linear;
 }
 
-.toolbarButton.toggled,
+/* .toolbarButton.toggled, */
 .splitToolbarButton.toggled > .toolbarButton.toggled,
 .secondaryToolbarButton.toggled {
   background-color: rgba(0, 0, 0, 0.3);
@@ -717,6 +721,18 @@ html[dir='rtl'] .dropdownToolbarButton {
   transition-duration: 10ms;
   transition-timing-function: linear;
 }
+
+.toolbarButton.toggled {
+  background-color: rgba(0, 0, 0, 0.3);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset,
+              0 0 1px rgba(0, 0, 0, 0.2) inset,
+              0 1px 0 rgba(255, 255, 255, 0.05);
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 10ms;
+  transition-timing-function: linear;
+}
+
 
 .toolbarButton.toggled:hover:active,
 .splitToolbarButton.toggled > .toolbarButton.toggled:hover:active,

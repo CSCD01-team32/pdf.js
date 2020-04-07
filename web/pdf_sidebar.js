@@ -88,6 +88,7 @@ class PDFSidebar {
     this.outerContainer = elements.outerContainer;
     this.viewerContainer = elements.viewerContainer;
     this.toggleButton = elements.toggleButton;
+    this.toolbarSidebar = elements.toolbarSidebar;
 
     this.thumbnailButton = elements.thumbnailButton;
     this.outlineButton = elements.outlineButton;
@@ -111,6 +112,35 @@ class PDFSidebar {
 
     // Bind the event listeners for keyboard navigation
     this._bindKeyListeners();
+
+    // Highlight the toolbar when focused
+    this.toolbarSidebar.addEventListener("focusin", () => {
+      this.toolbarSidebar.classList.add("outline-highlight");
+    });
+    this.toolbarSidebar.addEventListener("focusout", () => {
+      this.toolbarSidebar.classList.remove("outline-highlight");
+    });
+
+    // Highlight the toolbar buttons when focused
+    this.thumbnailButton.addEventListener("focusin", () => {
+      this.thumbnailButton.classList.add("outline-highlight");
+    });
+    this.thumbnailButton.addEventListener("focusout", () => {
+      this.thumbnailButton.classList.remove("outline-highlight");
+    });
+    this.outlineButton.addEventListener("focusin", () => {
+      this.outlineButton.classList.add("outline-highlight");
+    });
+    this.outlineButton.addEventListener("focusout", () => {
+      this.outlineButton.classList.remove("outline-highlight");
+    });
+    this.attachmentsButton.addEventListener("focusin", () => {
+      this.attachmentsButton.classList.add("outline-highlight");
+    });
+    this.attachmentsButton.addEventListener("focusout", () => {
+      this.attachmentsButton.classList.remove("outline-highlight");
+    });
+
   }
 
   reset() {
