@@ -123,22 +123,22 @@ class PDFSidebar {
 
     // Highlight the toolbar buttons when focused
     this.thumbnailButton.addEventListener("focusin", () => {
-      this.thumbnailButton.classList.add("outline-highlight");
+      this.thumbnailButton.classList.add("outline-highlight-thin");
     });
     this.thumbnailButton.addEventListener("focusout", () => {
-      this.thumbnailButton.classList.remove("outline-highlight");
+      this.thumbnailButton.classList.remove("outline-highlight-thin");
     });
     this.outlineButton.addEventListener("focusin", () => {
-      this.outlineButton.classList.add("outline-highlight");
+      this.outlineButton.classList.add("outline-highlight-thin");
     });
     this.outlineButton.addEventListener("focusout", () => {
-      this.outlineButton.classList.remove("outline-highlight");
+      this.outlineButton.classList.remove("outline-highlight-thin");
     });
     this.attachmentsButton.addEventListener("focusin", () => {
-      this.attachmentsButton.classList.add("outline-highlight");
+      this.attachmentsButton.classList.add("outline-highlight-thin");
     });
     this.attachmentsButton.addEventListener("focusout", () => {
-      this.attachmentsButton.classList.remove("outline-highlight");
+      this.attachmentsButton.classList.remove("outline-highlight-thin");
     });
 
   }

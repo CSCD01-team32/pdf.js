@@ -211,6 +211,9 @@ html[dir='rtl'] #outerContainer.sidebarOpen #viewerContainer:not(.pdfPresentatio
   border-color: rgba(77, 184, 255, 0.8);
 }
 .outline-highlight {
+  outline: 2px solid rgba(77, 184, 255, 0.8);
+}
+.outline-highlight-thin {
   outline: 1px solid rgba(77, 184, 255, 0.8);
 }
 
