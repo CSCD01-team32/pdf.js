@@ -25,9 +25,15 @@ import {
   moveToEndOfArray,
   waitOnEventOrTimeout,
   WaitOnType,
+  setFocusPrevious,
+  setFocusNext
 } from "../../web/ui_utils.js";
 import { createObjectURL } from "../../src/shared/util.js";
 import { isNodeJS } from "../../src/shared/is_node.js";
+import { Toolbar } from "../../web/toolbar.js";
+import { SecondaryToolbar } from "../../web/secondary_toolbar.js";
+import { PDFSidebar } from "../../web/pdf_side_bar.js";
+import { PDFFindbar } from "../../web/pdf_find_bar.js";
 
 describe("ui_utils", function() {
   describe("binary search", function() {
@@ -1025,6 +1031,310 @@ describe("ui_utils", function() {
         return x === 0;
       });
       expect(data).toEqual([1, 2, 3, 4, 5]);
+    });
+  });
+
+  describe("setFocusPrevious", function() {
+    beforeEach(function() {
+      const container = null;
+      const eventBus = new EventBus({ dispatchToDOM: true });
+      l10n = NullL10n;
+
+      // Initialize toolbar, secondary toolbar, sidebar, and findbar with data fields
+      toolbar = new Toolbar({
+        container: null,
+        numPages: null,
+        pageNumber: "pageNumber",
+        scaleSelectContainer: null,
+        scaleSelect: "scaleSelect",
+        customScaleOption: null,
+        previous: "previous",
+        next: "next",
+        zoomIn: "zoomIn",
+        zoomOut: "zoomOut",
+        viewFind: "viewFind",
+        openFile: "openFile",
+        print: "print",
+        presentationModeButton: "presentationMode",
+        download: "download",
+        viewBookmark: "viewBookmark",
+        secondaryToolbarToggle: "secondaryToolbarToggle",
+        sidebarToggle: "sidebarToggle",
+      }, eventBus, l10n);
+
+      secondaryToolbar = new SecondaryToolbar(
+        {
+          toolbar: null,
+          toggleButton: null,
+          toolbarButtonContainer: null,
+          presentationModeButton: "secondaryPresentationMode",
+          openFileButton: "secondaryOpenFile",
+          printButton: "secondaryPrint",
+          downloadButton: "secondaryDownload",
+          viewBookmarkButton: "secondaryViewBookmark",
+          firstPageButton: "firstPage",
+          lastPageButton: "lastPage",
+          pageRotateCwButton: "pageRotateCw",
+          pageRotateCcwButton: "pageRotateCcw",
+          cursorSelectToolButton: "cursorSelectTool",
+          cursorHandToolButton: "cursorHandTool",
+          scrollVerticalButton: "scrollVertical",
+          scrollHorizontalButton: "scrollHorizontal",
+          scrollWrappedButton: "scrollWrapped",
+          spreadNoneButton: "spreadNone",
+          spreadOddButton: "spreadOdd",
+          spreadEvenButton: "spreadEven",
+          documentPropertiesButton: "documentProperties",
+        },
+        container,
+        eventBus
+      );
+
+      pdfSideBar = new PDFSidebar({
+        elements: {
+          // Divs (and sidebar button)
+          outerContainer: null,
+          viewerContainer: null,
+          toggleButton: null,
+          // Buttons
+          thumbnailButton: "viewThumbnail",
+          outlineButton: null,
+          attachmentsButton: "attachmentButton",
+          // Views
+          thumbnailView: null,
+          outlineView: null,
+          attachmentsView: null,
+        },
+        pdfViewer: null,
+        pdfThumbnailViewer: null,
+        eventBus,
+        l10n: l10n,
+      });;
+
+      pdfFindBar = new PDFFindbar({
+        bar: null,
+        toggleButton: "viewFind",
+        findField: "findInput",
+        highlightAllCheckbox: "findHighlightAll",
+        caseSensitiveCheckbox: "findMatchCase",
+        entireWordCheckbox: null,
+        findMsg: null,
+        findResultsCount: null,
+        findPreviousButton: "findPrevious",
+        findNextButton: "findNext",
+      }, eventBus, l10n);
+    });
+
+    it("works on toolbar", function() {
+      var index = toolbar.focusOrder.indexOf(toolbar);
+      expect(index).toEqual(0); // Should be at first item
+      
+      setFocusPrevious(toolbar, toolbar);
+      index = toolbar.focusOrder.indexOf(toolbar);
+      expect(index).toEqual(toolbar.focusOrder.length - 1); // Goes from first item to last item
+
+      // Go to second item
+      toolbar = toolbar.focusOrder[1];
+      setFocusPrevious(toolbar, toolbar);
+      index = toolbar.focusOrder.indexOf(toolbar);
+      expect(index).toEqual(0); // Should be back to first element
+    });
+
+    it("works on secondary toolbar", function() {
+      var index = secondaryToolbar.focusOrder.indexOf(secondaryToolbar);
+      expect(index).toEqual(0); // Should be at first item
+      
+      setFocusPrevious(secondaryToolbar, secondaryToolbar);
+      index = secondaryToolbar.focusOrder.indexOf(secondaryToolbar);
+      expect(index).toEqual(secondaryToolbar.focusOrder.length - 1); // Goes from first item to last item
+
+      // Go to second item
+      secondaryToolbar = secondaryToolbar.focusOrder[1];
+      setFocusPrevious(secondaryToolbar, secondaryToolbar);
+      index = secondaryToolbar.focusOrder.indexOf(secondaryToolbar);
+      expect(index).toEqual(0); // Should be back to first element
+    });
+
+    it("works on pdf side bar", function() {
+      var index = pdfSideBar.focusOrder.indexOf(pdfSideBar);
+      expect(index).toEqual(0); // Should be at first item
+      
+      setFocusPrevious(pdfSideBar, pdfSideBar);
+      index = pdfSideBar.focusOrder.indexOf(pdfSideBar);
+      expect(index).toEqual(pdfSideBar.focusOrder.length - 1); // Goes from first item to last item
+
+      // Go to second item
+      pdfSideBar = pdfSideBar.focusOrder[1];
+      setFocusPrevious(pdfSideBar, pdfSideBar);
+      index = pdfSideBar.focusOrder.indexOf(pdfSideBar);
+      expect(index).toEqual(0); // Should be back to first element
+    });
+
+    it("works on pdf find bar", function() {
+      var index = pdfFindBar.focusOrder.indexOf(pdfFindBar);
+      expect(index).toEqual(0); // Should be at first item
+      
+      setFocusPrevious(pdfFindBar, pdfFindBar);
+      index = pdfFindBar.focusOrder.indexOf(pdfFindBar);
+      expect(index).toEqual(pdfFindBar.focusOrder.length - 1); // Goes from first item to last item
+
+      // Go to second item
+      pdfFindBar = pdfFindBar.focusOrder[1];
+      setFocusPrevious(pdfFindBar, pdfFindBar);
+      index = pdfFindBar.focusOrder.indexOf(pdfFindBar);
+      expect(index).toEqual(0); // Should be back to first element    });
+    });
+  });
+
+  describe("setFocusNext", function() {
+    beforeEach(function() {
+      const container = null;
+      const eventBus = new EventBus({ dispatchToDOM: true });
+      l10n = NullL10n;
+
+      // Initialize toolbar, secondary toolbar, sidebar, and findbar with data fields
+      toolbar = new Toolbar({
+        container: null,
+        numPages: null,
+        pageNumber: "pageNumber",
+        scaleSelectContainer: null,
+        scaleSelect: "scaleSelect",
+        customScaleOption: null,
+        previous: "previous",
+        next: "next",
+        zoomIn: "zoomIn",
+        zoomOut: "zoomOut",
+        viewFind: "viewFind",
+        openFile: "openFile",
+        print: "print",
+        presentationModeButton: "presentationMode",
+        download: "download",
+        viewBookmark: "viewBookmark",
+        secondaryToolbarToggle: "secondaryToolbarToggle",
+        sidebarToggle: "sidebarToggle",
+      }, eventBus, l10n);
+
+      secondaryToolbar = new SecondaryToolbar(
+        {
+          toolbar: null,
+          toggleButton: null,
+          toolbarButtonContainer: null,
+          presentationModeButton: "secondaryPresentationMode",
+          openFileButton: "secondaryOpenFile",
+          printButton: "secondaryPrint",
+          downloadButton: "secondaryDownload",
+          viewBookmarkButton: "secondaryViewBookmark",
+          firstPageButton: "firstPage",
+          lastPageButton: "lastPage",
+          pageRotateCwButton: "pageRotateCw",
+          pageRotateCcwButton: "pageRotateCcw",
+          cursorSelectToolButton: "cursorSelectTool",
+          cursorHandToolButton: "cursorHandTool",
+          scrollVerticalButton: "scrollVertical",
+          scrollHorizontalButton: "scrollHorizontal",
+          scrollWrappedButton: "scrollWrapped",
+          spreadNoneButton: "spreadNone",
+          spreadOddButton: "spreadOdd",
+          spreadEvenButton: "spreadEven",
+          documentPropertiesButton: "documentProperties",
+        },
+        container,
+        eventBus
+      );
+
+      pdfSideBar = new PDFSidebar({
+        elements: {
+          // Divs (and sidebar button)
+          outerContainer: null,
+          viewerContainer: null,
+          toggleButton: null,
+          // Buttons
+          thumbnailButton: "viewThumbnail",
+          outlineButton: null,
+          attachmentsButton: "attachmentButton",
+          // Views
+          thumbnailView: null,
+          outlineView: null,
+          attachmentsView: null,
+        },
+        pdfViewer: null,
+        pdfThumbnailViewer: null,
+        eventBus,
+        l10n: l10n,
+      });;
+
+      pdfFindBar = new PDFFindbar({
+        bar: null,
+        toggleButton: "viewFind",
+        findField: "findInput",
+        highlightAllCheckbox: "findHighlightAll",
+        caseSensitiveCheckbox: "findMatchCase",
+        entireWordCheckbox: null,
+        findMsg: null,
+        findResultsCount: null,
+        findPreviousButton: "findPrevious",
+        findNextButton: "findNext",
+      }, eventBus, l10n);
+    });
+
+    it("works on toolbar", function() {
+      var index = toolbar.focusOrder.indexOf(toolbar);
+      expect(index).toEqual(0); // Should be at first item
+      
+      setFocusNext(toolbar, toolbar);
+      index = toolbar.focusOrder.indexOf(toolbar);
+      expect(index).toEqual(1); // Goes from first item to second
+
+      // Go to last item
+      toolbar = toolbar.focusOrder[toolbar.focusOrder.length - 1];
+      setFocusNext(toolbar, toolbar);
+      index = toolbar.focusOrder.indexOf(toolbar);
+      expect(index).toEqual(0); // should be back to first element
+    });
+
+    it("works on secondary toolbar", function() {
+      var index = secondaryToolbar.focusOrder.indexOf(secondaryToolbar);
+      expect(index).toEqual(0); // Should be at first item
+      
+      setFocusNext(secondaryToolbar, secondaryToolbar);
+      index = secondaryToolbar.focusOrder.indexOf(secondaryToolbar);
+      expect(index).toEqual(1); // Goes from first item to second
+
+      // Go to last item
+      secondaryToolbar = secondaryToolbar.focusOrder[secondaryToolbar.focusOrder.length - 1];
+      setFocusNext(secondaryToolbar, secondaryToolbar);
+      index = secondaryToolbar.focusOrder.indexOf(secondaryToolbar);
+      expect(index).toEqual(0); // should be back to first element
+    });
+
+    it("works on pdf side bar", function() {
+      var index = pdfSideBar.focusOrder.indexOf(toolpdfSideBarbar);
+      expect(index).toEqual(0); // Should be at first item
+      
+      setFocusNext(pdfSideBar, pdfSideBar);
+      index = pdfSideBar.focusOrder.indexOf(pdfSideBar);
+      expect(index).toEqual(1); // Goes from first item to second
+
+      // Go to last item
+      pdfSideBar = pdfSideBar.focusOrder[pdfSideBar.focusOrder.length - 1];
+      setFocusNext(pdfSideBar, pdfSideBar);
+      index = pdfSideBar.focusOrder.indexOf(pdfSideBar);
+      expect(index).toEqual(0); // should be back to first element
+    });
+
+    it("works on pdf find bar", function() {
+      var index = pdfFindBar.focusOrder.indexOf(pdfFindBar);
+      expect(index).toEqual(0); // Should be at first item
+      
+      setFocusNext(pdfFindBar, pdfFindBar);
+      index = pdfFindBar.focusOrder.indexOf(pdfFindBar);
+      expect(index).toEqual(1); // Goes from first item to second
+
+      // Go to last item
+      pdfFindBar = pdfFindBar.focusOrder[pdfFindBar.focusOrder.length - 1];
+      setFocusNext(pdfFindBar, pdfFindBar);
+      index = pdfFindBar.focusOrder.indexOf(pdfFindBar);
+      expect(index).toEqual(0); // should be back to first element
     });
   });
 });
