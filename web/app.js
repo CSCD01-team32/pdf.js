@@ -2666,6 +2666,9 @@ function webViewerKeyDown(evt) {
       case 115: // F4
         PDFViewerApplication.pdfSidebar.toggle();
         break;
+
+      case 118: //F7
+        PDFViewerApplication.secondaryToolbar.toggle();
     }
 
     if (

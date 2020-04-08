@@ -207,7 +207,18 @@ class SecondaryToolbar {
         );
       }
     });
+
+    // Highlight the toolbar when focused
+    this.toolbar.addEventListener("focusin", () => {
+      this.toolbar.classList.add("outline-highlight");
+    });
+    this.toolbar.addEventListener("focusout", () => {
+      this.toolbar.classList.remove("outline-highlight");
+    });
+
   }
+
+
 
   /**
    * @type {boolean}
