@@ -204,6 +204,17 @@ html[dir='rtl'] #outerContainer.sidebarOpen #viewerContainer:not(.pdfPresentatio
   right: 0;
   z-index: 9999;
   cursor: default;
+  border: 1px solid rgba(64, 64, 64, 1);
+}
+
+.border-highlight {
+  border-color: rgba(77, 184, 255, 0.8);
+}
+.outline-highlight {
+  outline: 2px solid rgba(77, 184, 255, 0.8);
+}
+.outline-highlight-thin {
+  outline: 1px solid rgba(77, 184, 255, 0.8);
 }
 
 #toolbarContainer {
@@ -649,10 +660,20 @@ html[dir='rtl'] .dropdownToolbarButton {
 
 .toolbarButton:hover,
 .toolbarButton:focus,
-.dropdownToolbarButton,
-.overlayButton,
+.overlayButton:hover,
+.overlayButton:focus,
 .secondaryToolbarButton:hover,
 .secondaryToolbarButton:focus {
+  background-color: rgba(0, 0, 0, 0.12);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+  background-clip: padding-box;
+  border-color: rgba(77, 184, 255, 0.8);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset,
+              0 0 1px rgba(255, 255, 255, 0.15) inset,
+              0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.dropdownToolbarButton{
   background-color: rgba(0, 0, 0, 0.12);
   background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
   background-clip: padding-box;
@@ -663,13 +684,23 @@ html[dir='rtl'] .dropdownToolbarButton {
               0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
+/* Outline toolbar elements on hover */
+.dropdownToolbarButton:hover,
+.pageUp:hover,
+.pageDown:hover,
+.zoomOut:hover,
+.zoomIn:hover,
+.pageNumber:hover {
+  outline: 1px solid rgba(77, 184, 255, 0.8);
+}
+
 .toolbarButton:hover:active,
 .overlayButton:hover:active,
 .dropdownToolbarButton:hover:active,
 .secondaryToolbarButton:hover:active {
   background-color: rgba(0, 0, 0, 0.2);
   background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-  border-color: rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.45);
+  border-color: rgba(253, 74, 74, 0.35) rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.45);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset,
               0 0 1px rgba(0, 0, 0, 0.2) inset,
               0 1px 0 rgba(255, 255, 255, 0.05);
@@ -678,7 +709,7 @@ html[dir='rtl'] .dropdownToolbarButton {
   transition-timing-function: linear;
 }
 
-.toolbarButton.toggled,
+/* .toolbarButton.toggled, */
 .splitToolbarButton.toggled > .toolbarButton.toggled,
 .secondaryToolbarButton.toggled {
   background-color: rgba(0, 0, 0, 0.3);
@@ -691,6 +722,18 @@ html[dir='rtl'] .dropdownToolbarButton {
   transition-duration: 10ms;
   transition-timing-function: linear;
 }
+
+.toolbarButton.toggled {
+  background-color: rgba(0, 0, 0, 0.3);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset,
+              0 0 1px rgba(0, 0, 0, 0.2) inset,
+              0 1px 0 rgba(255, 255, 255, 0.05);
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 10ms;
+  transition-timing-function: linear;
+}
+
 
 .toolbarButton.toggled:hover:active,
 .splitToolbarButton.toggled > .toolbarButton.toggled:hover:active,
@@ -1053,6 +1096,10 @@ html[dir='rtl'] .verticalToolbarSeparator {
 .toolbarField[type=checkbox] {
   display: inline-block;
   margin: 8px 0px;
+}
+
+.toolbarField[type=checkbox]:focus {
+  outline: 1px solid rgba(77, 184, 255, 0.8);
 }
 
 .toolbarField.pageNumber {

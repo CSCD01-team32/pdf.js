@@ -97,6 +97,9 @@ class PDFDocumentProperties {
     l10n.getLanguage().then(locale => {
       this._isNonMetricLocale = NON_METRIC_LOCALES.includes(locale);
     });
+
+    // Trap focus in this dialog box until it is closed
+    this._trapFocus();
   }
 
   /**
@@ -115,8 +118,8 @@ class PDFDocumentProperties {
     Promise.all([
       this.overlayManager.open(this.overlayName),
       this._dataAvailableCapability.promise,
-      this.closeButton.focus(),
-      //document.getElementById("documentPropertiesClose").focus(),
+      this.container.focus(),
+
     ]).then(() => {
       const currentPageNumber = this._currentPageNumber;
       const pagesRotation = this._pagesRotation;
@@ -285,6 +288,24 @@ class PDFDocumentProperties {
       this.fields[id].textContent =
         content || content === 0 ? content : DEFAULT_FIELD_CONTENT;
     }
+  }
+
+  /**
+   * @private
+   */
+  _trapFocus() {
+    var self = this;
+
+    this.container.addEventListener("keydown", function(evt) {
+      if (evt.key === "Tab") {
+        evt.preventDefault();
+        if (document.activeElement === self.closeButton) {
+          self.container.focus();
+        } else {
+          self.closeButton.focus();
+        }
+      }
+    });
   }
 
   /**

@@ -78,6 +78,14 @@ class PDFFindBar {
       }
     });
 
+    // Highlight the toolbar when focused
+    this.bar.addEventListener("focusin", () => {
+      this.bar.classList.add("outline-highlight");
+    });
+    this.bar.addEventListener("focusout", () => {
+      this.bar.classList.remove("outline-highlight");
+    });
+
     this.findPreviousButton.addEventListener("click", () => {
       this.dispatchEvent("again", true);
     });
